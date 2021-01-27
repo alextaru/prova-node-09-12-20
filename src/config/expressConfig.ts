@@ -1,6 +1,7 @@
 import express from "express";
 import * as bodyParser from "body-parser";
 import userRoutes from "../routes/user.routes";
+import '../database/Connection'
 
 const app = express();
 app.use(bodyParser.json({

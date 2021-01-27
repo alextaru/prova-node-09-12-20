@@ -1,0 +1,8 @@
+const { resolve } = require('path');
+
+module.exports = {
+  'config': resolve('src', 'config', 'sequelizeConfig.ts'),
+  'models-path': resolve('src', 'models'),
+  'migrations-path': resolve( 'database', 'migrations'),
+  'seeders-path': resolve( 'database', 'seeders'),
+};
