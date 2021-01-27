@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 const databaseConfig = require('../config/sequelizeConfig');
 
-class Connection {
+class Database {
   public connection: Sequelize.Sequelize;
 
   constructor() {
@@ -13,6 +13,6 @@ class Connection {
   }
 }
 
-const database: Connection = new Connection();
+const database: Database = new Database();
 
-export default Connection;
+export default database;
