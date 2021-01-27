@@ -1,11 +1,12 @@
 import { Router } from "express";
 import UserController from "../controllers/UserController";
+import AuthMiddleware from "../middlewares/AuthMiddleware";
 
 const routes = Router();
 
-routes.get('/', UserController.index);
+routes.get('/', AuthMiddleware, UserController.index);
 routes.post('/', UserController.store);
-routes.put('/:id', UserController.update);
-routes.delete('/:id', UserController.destroy);
+routes.put('/:id', AuthMiddleware, UserController.update);
+routes.delete('/:id', AuthMiddleware, UserController.destroy);
 
 export default routes

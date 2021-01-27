@@ -1,18 +1,40 @@
 import { Request, Response } from 'express'
-import UserModel from "../models/User";
+import UserModel from "../models/User"
+import bcrypt from 'bcryptjs'
 class UserController {
     async index(req: Request, res: Response) {
-      const users = await UserModel.findAll();
+      const { id, name, username, email } = req.query;
+      const where = {
+        id,
+        name,
+        username,
+        email
+      };
+      if(!id){
+        delete where.id
+      }
+      if(!name){
+        delete where.name
+      }
+      if(!username){
+        delete where.username
+      }
+      if(!email){
+        delete where.email
+      }
+      const users = await UserModel.findAll({where});
       return res.json(users);
     }
 
     async store(req: Request, res: Response) {
       const {name, username, email, password} = req.body;
+      const salt = bcrypt.genSaltSync(10);
+      const passwordCrypt = bcrypt.hashSync(password, salt);
       const user = await UserModel.create({
         name,
         username,
         email,
-        password
+        password: passwordCrypt
       });
       return res.status(201).json(user);
     }
