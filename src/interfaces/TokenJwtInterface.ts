@@ -1,5 +1,5 @@
 export interface TokenJwtInterface {
-    id: string
+    idUser: string
     iat: number
     exp: number
 }

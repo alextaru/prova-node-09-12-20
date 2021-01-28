@@ -12,8 +12,8 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
   const token = authorization.replace('Bearer', '').trim();
   try {
     const data = jwt.verify(token, public_key);
-    const { id } = data as TokenJwtInterface;
-    req.body.userId = id;
+    const { idUser } = data as TokenJwtInterface;
+    req.body.userId = idUser;
     next();
   } catch {
     return res.sendStatus(401);
